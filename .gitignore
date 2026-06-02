@@ -1,1 +1,36 @@
+# =========================
+# Entornos Virtuales
+# =========================
 .venv/
+venv/
+env/
+ENV/
+
+# =========================
+# Archivos de Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# =========================
+# Bases de Datos
+# =========================
+# Evita subir tu base de datos local a GitHub. 
+# Render la creará automáticamente en la nube con tu función init_db()
+*.db
+*.sqlite3
+database.db
+
+# =========================
+# Variables de Entorno y Secretos
+# =========================
+.env
+.flaskenv
+
+# =========================
+# Archivos del Sistema Operativo
+# =========================
+.DS_Store
+Thumbs.db
