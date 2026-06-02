@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Principal - Práctica Parcial</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background-color: #f4f4f9; 
+            margin: 0;
+        }
+        .dashboard-container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+            width: 350px; 
+            text-align: center;
+        }
+        h2 { color: #333; margin-bottom: 5px; }
+        p { color: #666; margin-bottom: 25px; }
+        .btn { 
+            display: block;
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 15px;
+            background-color: #0056b3; 
+            color: white; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 16px;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        .btn:hover { background-color: #004494; }
+        .btn-danger { background-color: #dc3545; }
+        .btn-danger:hover { background-color: #c82333; }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <h2>Panel Principal</h2>
+        <p>Bienvenido al sistema.</p>
+        
+        <a href="buscador.html" class="btn">Ir al Buscador de Productos</a>
+        <a href="login.html" class="btn btn-danger">Salir del sistema</a>
+    </div>
+
+</body>
+</html>

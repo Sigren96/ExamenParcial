@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador - Práctica Parcial</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background-color: #f4f4f9; 
+            margin: 0;
+        }
+        .search-container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+            width: 400px; 
+        }
+        h2 { text-align: center; color: #333; }
+        .form-group { margin-bottom: 15px; }
+        .form-group input { 
+            width: 100%; 
+            padding: 10px; 
+            box-sizing: border-box; 
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn { 
+            width: 100%; 
+            padding: 10px; 
+            background-color: #28a745; 
+            color: white; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .btn:hover { background-color: #218838; }
+        .btn-nav { background-color: #6c757d; }
+        .btn-nav:hover { background-color: #5a6268; }
+        
+        /* Caja de resultados */
+        #resultado {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            display: none; /* Oculto por defecto */
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="search-container">
+        <h2>Buscador de Productos</h2>
+        
+        <form id="searchForm">
+            <div class="form-group">
+                <input type="text" id="codigo" placeholder="Ingrese el código (Ej: P001)" required>
+            </div>
+            <button type="submit" class="btn">Buscar</button>
+        </form>
+
+        <div id="resultado">
+            </div>
+
+        <div class="nav-buttons">
+            <button onclick="window.location.href='principal.html'" class="btn btn-nav">Regresar</button>
+            <button onclick="window.location.href='login.html'" class="btn btn-nav">Salir</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const codigo = document.getElementById('codigo').value;
+            const resultadoDiv = document.getElementById('resultado');
+            
+            // ATENCIÓN: Cambia esta URL por la de tu backend en Render cuando hagas el deploy
+            const backend_url = 'http://127.0.0.1:5000/api/buscar_producto'; 
+
+            try {
+                // Fetch al backend enviando el código [cite: 20, 22]
+                const response = await fetch(backend_url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ codigo: codigo })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.encontrado) {
+                    resultadoDiv.style.display = 'block';
+                    resultadoDiv.innerHTML = `
+                        <strong>Nombre:</strong> ${data.producto.nombre} <br>
+                        <strong>Descripción:</strong> ${data.producto.descripcion} <br>
+                        <strong>Precio:</strong> S/ ${data.producto.precio} <br>
+                        <strong>Stock:</strong> ${data.producto.stock}
+                    `;
+                } else {
+                    resultadoDiv.style.display = 'block';
+                    resultadoDiv.innerHTML = `<span style="color: red;">Producto no encontrado.</span>`;
+                }
+            } catch (error) {
+                resultadoDiv.style.display = 'block';
+                resultadoDiv.innerHTML = `<span style="color: red;">Error conectando con el servidor Flask.</span>`;
+                console.error("Error:", error);
+            }
+        });
+    </script>
+</body>
+</html>

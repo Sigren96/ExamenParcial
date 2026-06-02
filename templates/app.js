@@ -9,7 +9,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 
     // Validación de prueba
     if(usuario === "admin" && password === "1234") {
-        window.location.href = "exito.html";
+        window.location.href = "principal.html";
         // Aquí luego pondremos el código para redirigir a la página del modelo predictivo
     } else {
         mensaje.style.color = "red";
