@@ -116,8 +116,10 @@ def buscar_producto():
             "mensaje": "Producto no encontrado en el inventario"
         }), 404
 
+init_db()
+
 if __name__ == "__main__":
     # Inicializa de manera segura la base de datos local antes de levantar el servidor
-    init_db() 
+    
     # El examen indica que Render utilizará preferentemente el puerto 10000
     app.run(debug=True, port=10000)
